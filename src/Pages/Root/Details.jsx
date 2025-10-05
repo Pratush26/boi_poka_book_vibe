@@ -39,8 +39,8 @@ export default function Details() {
                     </div>
                 </span>
                 <div className="space-x-2 my-4">
-                    <button onClick={() => AddToReadList(e.bookId)} className="px-4 py-2 rounded cursor-pointer font-bold border-1">Mark as read</button>
-                    <button onClick={() => AddToWishList(e.bookId)} className="px-4 py-2 rounded cursor-pointer font-bold bg-sky-300 text-white">Wishlist</button>
+                    <button onClick={() => AddToReadList(e.bookId, e.bookName)} className="px-4 py-2 rounded cursor-pointer font-bold border-1">Mark as read</button>
+                    <button onClick={() => AddToWishList(e.bookId, e.bookName)} className="px-4 py-2 rounded cursor-pointer font-bold bg-sky-300 text-white">Wishlist</button>
                 </div>
             </div>
         </section>

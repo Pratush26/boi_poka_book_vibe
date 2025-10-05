@@ -1,9 +1,11 @@
 import { GiPapers } from "react-icons/gi";
 import { IoLocationOutline } from "react-icons/io5";
 import { MdOutlinePeopleAlt } from "react-icons/md";
+import { RxCrossCircled } from "react-icons/rx";
 import { Link } from "react-router";
+import { RemoveFromDB } from "../utility/localDb";
 
-export default function ListCard({ e }) {
+export default function ListCard({ e , dbtype }) {
     return (
         <section className="grid grid-cols-[10%_86%] my-4 bg-gray-50 p-4 rounded-2xl shadow-md/70 shadow-gray-400 items-center justify-items-center-safe w-11/12 gap-10 mx-auto">
             <div className="bg-gray-200 rounded-2xl h-3/4 my-auto flex items-center justify-center">
@@ -24,10 +26,13 @@ export default function ListCard({ e }) {
                         <p className="flex items-center justify-center gap-2"><MdOutlinePeopleAlt /> Publisher: {e.publisher}</p>
                         <p className="flex items-center justify-center gap-2"><IoLocationOutline /> Year of Publishing: {e.yearOfPublishing}</p>
                     </div>
-                <div className="flex items-center gap-4 font-semibold text-sm">
+                <div className="flex items-center justify-between gap-4 font-semibold text-sm">
+                    <span className="flex items-center gap-4 ">
                         <p className="bg-sky-50 text-sky-600 px-3 py-2 rounded-full">Category: {e.category}</p>
                         <p className="bg-amber-50 text-amber-600 px-3 py-2 rounded-full">Rating: {e.rating}</p>
                         <Link state={e} to="/details" className="bg-green-600 text-white px-3 py-2 rounded-full">View Details</Link>
+                    </span>
+                        <button onClick={() => RemoveFromDB( dbtype, e.bookId,e.bookName)} className="text-xl cursor-pointer font-semibold text-red-400"><RxCrossCircled /></button>
                 </div>
             </div>
         </section>

@@ -53,7 +53,7 @@ export default function ListedBooks() {
                             <p>Loading...</p>
                             :
                             readList.map(e => (
-                                <ListCard e={e} key={e.bookId} />
+                                <ListCard dbtype="readList" e={e} key={e.bookId} />
                             ))
                     }
                 </TabPanel>
@@ -63,7 +63,7 @@ export default function ListedBooks() {
                             <p>Loading...</p>
                             :
                             wishList.map(e => (
-                                <ListCard e={e} key={e.bookId} />
+                                <ListCard dbtype="wishList" e={e} key={e.bookId} />
                             ))
                     }
                 </TabPanel>
