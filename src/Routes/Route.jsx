@@ -4,11 +4,13 @@ import Root from "../Pages/Root/Root";
 import Home from "../Pages/Root/Hoom";
 import Details from "../Pages/Root/Details";
 import PagesToReadGraph from "../Pages/PagesGraph";
+import ListedBooks from "../Pages/Root/listedBooks";
 
 export const router = createBrowserRouter([
   {
     path: "/",
     Component: Root,
+    hydrateFallbackElement:<p>Loading...</p>,
     children:[
       {
         index: true,
@@ -18,6 +20,11 @@ export const router = createBrowserRouter([
       {
         path: "/details",
         Component: Details,
+      },
+      {
+        path: "/listed",
+        loader:() => fetch('/booksData.json'),
+        Component: ListedBooks,
       },
       {
         path: "/pages-graph",
