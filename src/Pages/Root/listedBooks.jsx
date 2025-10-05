@@ -8,10 +8,10 @@ import 'react-tabs/style/react-tabs.css';
 export default function ListedBooks() {
     const navigation = useNavigation()
     const arr = useLoaderData();
-    const readListArr = findDB("readList")
-    const [readList, setReadList] = useState(arr.filter(e => readListArr.includes(e.bookId)))
-    const wishListArr = findDB("wishList")
-    const [wishList, setWishList] = useState(arr.filter(e => wishListArr.includes(e.bookId)))
+    // const readListArr = findDB("readList")
+    // const wishListArr = findDB("wishList")
+    const [readList, setReadList] = useState(arr.filter(e => findDB("readList").includes(e.bookId)))
+    const [wishList, setWishList] = useState(arr.filter(e => findDB("wishList").includes(e.bookId)))
     const handleSort = (type) => {
         if (type === "ratings") {
             setReadList(prev => [...prev].sort((a, b) => a.rating - b.rating))
@@ -25,6 +25,10 @@ export default function ListedBooks() {
             setReadList(prev => [...prev].sort((a, b) => a.yearOfPublishing - b.yearOfPublishing))
             setWishList(prev => [...prev].sort((a, b) => a.yearOfPublishing - b.yearOfPublishing))
         }
+    }
+    const handleClick = (type) => {
+        if(type === "readList") setReadList(arr.filter(e => findDB("readList").includes(e.bookId)));
+        else setReadList(arr.filter(e => findDB("wishList").includes(e.bookId)))
     }
     return (
         <main className="my-6 w-11/12 mx-auto">
@@ -53,7 +57,7 @@ export default function ListedBooks() {
                             <p>Loading...</p>
                             :
                             readList.map(e => (
-                                <ListCard dbtype="readList" e={e} key={e.bookId} />
+                                <ListCard handleClick={handleClick} dbtype="readList" e={e} key={e.bookId} />
                             ))
                     }
                 </TabPanel>
@@ -63,7 +67,7 @@ export default function ListedBooks() {
                             <p>Loading...</p>
                             :
                             wishList.map(e => (
-                                <ListCard dbtype="wishList" e={e} key={e.bookId} />
+                                <ListCard handleClick={handleClick} dbtype="wishList" e={e} key={e.bookId} />
                             ))
                     }
                 </TabPanel>

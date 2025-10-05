@@ -3,7 +3,7 @@ import NotFoundPage from "../Pages/not-found/NotFound";
 import Root from "../Pages/Root/Root";
 import Home from "../Pages/Root/Hoom";
 import Details from "../Pages/Root/Details";
-import PagesToReadGraph from "../Pages/PagesGraph";
+import PagesToReadGraph from "../Pages/Root/PagesGraph";
 import ListedBooks from "../Pages/Root/listedBooks";
 
 export const router = createBrowserRouter([

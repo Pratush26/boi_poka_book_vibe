@@ -22,7 +22,7 @@ export function AddToReadList(id, name) {
     if (db.find(e => e == id))
         Swal.fire({
             title: name,
-            text: "Alreay exist in your readlist!",
+            text: "Alreay exists in your readlist!",
             icon: "error"
         });
     else {
@@ -41,7 +41,7 @@ export function AddToWishList(id, name) {
     if (db.find(e => e == id))
         Swal.fire({
             title: name,
-            text: "Alreay exist in your wishlist!",
+            text: "Alreay exists in your wishlist!",
             icon: "error"
         });
     else {
@@ -54,27 +54,27 @@ export function AddToWishList(id, name) {
     }
 }
 
-export function RemoveFromDB(dbType, id, name) {
-  Swal.fire({
-    title: "Are you sure?",
-    text: `Do you want to remove ${name} from your ${dbType}?`,
-    icon: "warning",
-    showCancelButton: true,
-    confirmButtonColor: "#3085d6",
-    cancelButtonColor: "#d33",
-    confirmButtonText: "Yes, remove it!"
-  }).then((result) => {
-    if (result.isConfirmed) {
-      // 🔹 Remove from DB only if confirmed
-      let db = findDB(dbType);
-      db = db.filter(e => e !== id);
-      localStorage.setItem(dbType, JSON.stringify(db));
-
-      Swal.fire({
-        title: "Removed!",
-        text: `${name} successfully removed from your ${dbType}`,
-        icon: "success"
-      });
-    }
-  });
+export function RemoveFromDB(dbType, id, name, handleClick) {
+    Swal.fire({
+        title: "Are you sure?",
+        text: `Do you want to remove ${name} from your ${dbType}?`,
+        icon: "warning",
+        showCancelButton: true,
+        confirmButtonColor: "#3085d6",
+        cancelButtonColor: "#d33",
+        confirmButtonText: "Yes, remove it!"
+    }).then((result) => {
+        if (result.isConfirmed) {
+            // 🔹 Remove from DB only if confirmed
+            let db = findDB(dbType);
+            db = db.filter(e => e !== id);
+            localStorage.setItem(dbType, JSON.stringify(db));
+            handleClick(dbType)
+            Swal.fire({
+                title: "Removed!",
+                text: `${name} successfully removed from your ${dbType}`,
+                icon: "success"
+            });
+        }
+    });
 }
