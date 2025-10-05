@@ -3,8 +3,8 @@ import { Link } from "react-router";
 
 export default function Card ({e}) {
   return (
-    <span className="border flex flex-col justify-between border-gray-400 rounded-2xl py-4 px-6">
-        <div>
+    <span className="border flex flex-col justify-between gap-1 border-gray-200 shadow-md/50 shadow-gray-500 rounded-2xl p-6">
+        <div className="bg-gray-100 rounded-2xl">
             <img src={e.image} alt={`Book: ${e.bookName}`} className="w-1/2 my-10 mx-auto h-auto rotate-x-15 rotate-z-12 skew-y-1 -skew-x-1 shadow-lg shadow-gray-800" />
         </div>
         <div className="text-xs font-semibold flex flex-wrap gap-2 my-2 text-emerald-700"> 
